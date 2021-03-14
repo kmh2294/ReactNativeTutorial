@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { apiImage } from "../../api";
 import Poster from "../Poster";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Votes from "../Votes";
+import { trimText } from "../../utils";
 
 const Container = styled.View`
     width: 100%;
@@ -33,11 +35,8 @@ const Title = styled.Text`
     font-size: 19px;
     margin-bottom: 7px;
 `;
-const Votes = styled.Text`
-    color: rgb(220, 220, 220);
+const VotesContainer = styled.View`
     margin-bottom: 7px;
-    font-size: 12px;
-    font-weight: 500;
 `;
 const Overview = styled.Text`
     color: rgb(220, 220, 220);
@@ -62,13 +61,13 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
             source={{ uri: apiImage(backgroundImage) }}
         />
         <Content>
-            <Poster url={apiImage(poster)} />
+            <Poster url={poster} />
             <Data>
-                <Title>
-                    {title.length > 40 ? `${title.slice(0, 40)}...` : title}
-                </Title>
-                <Votes>⭐ {votes} / 10</Votes>
-                <Overview>{overview.slice(0, 110)}...</Overview>
+                <Title>{trimText(title, 40)}</Title>
+                <VotesContainer>
+                    <Votes votes={votes}></Votes>
+                </VotesContainer>
+                <Overview>{trimText(overview, 110)}</Overview>
                 <TouchableOpacity>
                     <Button>
                         <ButtonText>View detail</ButtonText>
@@ -85,6 +84,7 @@ Slide.propTypes = {
     backgroundImage: PropTypes.string.isRequired,
     votes: PropTypes.number.isRequired,
     overview: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
 };
 
 export default Slide;
