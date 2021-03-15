@@ -4,7 +4,6 @@ import Movies from "../screens/Movies";
 import Tv from "../screens/Tv";
 import Search from "../screens/Search";
 import Favs from "../screens/Favs";
-import { roundToNearestPixel } from "react-native/Libraries/Utilities/PixelRatio";
 import { useLayoutEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Platform } from "react-native";
@@ -53,8 +52,8 @@ export default ({ navigation, route }) => {
                 },
             }}
         >
-            <Tabs.Screen name="Movies" component={Movies} />
             <Tabs.Screen name="TV" component={Tv} />
+            <Tabs.Screen name="Movies" component={Movies} />
             <Tabs.Screen name="Search" component={Search} />
             <Tabs.Screen name="Favourites" component={Favs} />
         </Tabs.Navigator>

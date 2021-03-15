@@ -3,9 +3,10 @@ export const trimText = (text, limit) =>
 
 export const formatDate = (date) => {
     const theDate = new Date(date);
-    return theDate.toLocaleDateString("ko", {
-        dat: "numeric",
+    const returnDate = theDate.toLocaleDateString("ko", {
+        day: "numeric",
         month: "long",
         year: "numeric",
     });
+    return returnDate;
 };
