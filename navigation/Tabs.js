@@ -7,14 +7,13 @@ import Favs from "../screens/Favs";
 import { useLayoutEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Platform } from "react-native";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const Tabs = createBottomTabNavigator();
-const getHeaderName = (route) =>
-    route?.state?.routeNames[route.state.index] || "Movies";
 
 export default ({ navigation, route }) => {
     useLayoutEffect(() => {
-        const name = getHeaderName(route);
+        const name = getFocusedRouteNameFromRoute(route) || "MoviesY";
         navigation.setOptions({
             title: name,
         });
@@ -52,9 +51,9 @@ export default ({ navigation, route }) => {
                 },
             }}
         >
-            <Tabs.Screen name="TV" component={Tv} />
-            <Tabs.Screen name="Movies" component={Movies} />
             <Tabs.Screen name="Search" component={Search} />
+            <Tabs.Screen name="Movies" component={Movies} />
+            <Tabs.Screen name="TV" component={Tv} />
             <Tabs.Screen name="Favourites" component={Favs} />
         </Tabs.Navigator>
     );

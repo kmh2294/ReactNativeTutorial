@@ -4,6 +4,7 @@ import Swiper from "react-native-web-swiper";
 import styled from "styled-components/native";
 import Horizontal from "../../components/Horizontal";
 import HorizontalSlider from "../../components/HorizontalSlider";
+import List from "../../components/List";
 import Slide from "../../components/Movies/Slide";
 import ScrollContainer from "../../components/ScrollContainer";
 import Title from "../../components/Title";
@@ -18,10 +19,6 @@ const SlideContainer = styled.View`
 `;
 
 const Container = styled.View``;
-
-const UpcominContainer = styled.View`
-    margin-top: 20px;
-`;
 
 export default ({ loading, nowPlaying, popular, upcoming }) => (
     <ScrollContainer loading={loading}>
@@ -53,8 +50,7 @@ export default ({ loading, nowPlaying, popular, upcoming }) => (
                         />
                     ))}
                 </HorizontalSlider>
-                <Title title={"Coming Soon"}></Title>
-                <UpcominContainer>
+                <List title={"Coming Soon"}>
                     {upcoming.map((movie) => (
                         <Horizontal
                             key={movie.id}
@@ -65,7 +61,7 @@ export default ({ loading, nowPlaying, popular, upcoming }) => (
                             releaseDate={movie.release_date}
                         />
                     ))}
-                </UpcominContainer>
+                </List>
             </Container>
         </>
     </ScrollContainer>
